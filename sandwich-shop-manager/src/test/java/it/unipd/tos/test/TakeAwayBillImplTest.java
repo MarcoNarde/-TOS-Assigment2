@@ -29,7 +29,7 @@ public class TakeAwayBillImplTest {
         items = new ArrayList<MenuItem>();
         tot=0;
     }
-    
+
     @Test
     public void TestSumMenuItem() throws TakeAwayBillException{
         items.add(new MenuItem(ItemType.Panini,"Panino Vegetariano",5.0));
@@ -39,6 +39,13 @@ public class TakeAwayBillImplTest {
 
         tot=ordine.getOrderPrice(items);
         assertEquals(15, tot,0);
+    }
+    
+
+    @Test
+    public void TestSumVoidListOfMenuItem() throws TakeAwayBillException{
+        tot=ordine.getOrderPrice(items);
+        assertEquals(0, tot,0);
     }
     
     @Test
@@ -74,6 +81,14 @@ public class TakeAwayBillImplTest {
         for(int i=0; i<31; i++)items.add(new MenuItem(ItemType.Fritti, "Olive ascolane", 0));
         
             ordine.getOrderPrice(items);
+    }
+    
+    @Test
+    public void TestTotLessThen10() throws TakeAwayBillException{
+        items.add(new MenuItem(ItemType.Bevande,"Aranciata",5.0));
+
+        tot=ordine.getOrderPrice(items);
+        assertEquals(5.5, tot,0);
     }
 
 }

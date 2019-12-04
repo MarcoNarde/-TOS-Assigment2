@@ -16,6 +16,7 @@ public class TakeAwayBillImpl implements TakeAwayBill{
         int nPanini=0,totPaniniFritti=0;
         double minPanino=Integer.MAX_VALUE;
         
+        if(size==0)return 0;
         if(size>30)throw new TakeAwayBillException();
         
         for(int i=0;i<size;i++) {     
@@ -37,6 +38,7 @@ public class TakeAwayBillImpl implements TakeAwayBill{
         
         if(nPanini>5)totale-=minPanino*0.5;
         if(totPaniniFritti>50)totale-=totale*0.1;
+        if(totale<10)totale+=0.5;
         
         return totale;
         
