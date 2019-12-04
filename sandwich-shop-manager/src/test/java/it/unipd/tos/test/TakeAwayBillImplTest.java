@@ -53,5 +53,20 @@ public class TakeAwayBillImplTest {
         tot=ordine.getOrderPrice(items);
         assertEquals(26.5, tot,0);
     }
+    
+    @Test
+    public void TestOverflowPaniniFritti() throws TakeAwayBillException{
+        items.add(new MenuItem(ItemType.Panini,"Panino Vegetariano",10.0));
+        items.add(new MenuItem(ItemType.Fritti,"Olive Ascolane",10.0));
+        items.add(new MenuItem(ItemType.Panini,"Panino Vegetariano",10.0));
+        items.add(new MenuItem(ItemType.Fritti,"Olive Ascolane",10.0));
+        items.add(new MenuItem(ItemType.Panini,"Panino Vegetariano",10.0));
+        items.add(new MenuItem(ItemType.Fritti,"Olive Ascolane",10.0));
+        items.add(new MenuItem(ItemType.Panini,"Panino Vegetariano",10.0));
+        items.add(new MenuItem(ItemType.Fritti,"Olive Ascolane",10.0));
+
+        tot=ordine.getOrderPrice(items);
+        assertEquals(72, tot,0);
+    }
 
 }
