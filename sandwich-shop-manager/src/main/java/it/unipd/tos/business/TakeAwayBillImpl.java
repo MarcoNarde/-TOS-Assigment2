@@ -13,10 +13,23 @@ public class TakeAwayBillImpl implements TakeAwayBill{
     public double getOrderPrice(List<MenuItem> itemsOrdered) throws TakeAwayBillException {
         double totale=0;
         int size=itemsOrdered.size();
+        int nPanini=0;
+        double minPanino=Integer.MAX_VALUE;
         
         for(int i=0;i<size;i++) {     
             totale+=itemsOrdered.get(i).getPrice();
+            switch(itemsOrdered.get(i).getType()) {
+            case Panini:
+                nPanini++;
+                if(itemsOrdered.get(i).getPrice()<minPanino)
+                    minPanino=itemsOrdered.get(i).getPrice();
+                break;
+            default:
+                break;
+            }   
         }
+        
+        if(nPanini>5)totale-=minPanino*0.5;
         
         return totale;
         

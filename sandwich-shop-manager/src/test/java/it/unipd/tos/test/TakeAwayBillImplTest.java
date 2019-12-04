@@ -40,5 +40,18 @@ public class TakeAwayBillImplTest {
         tot=ordine.getOrderPrice(items);
         assertEquals(15, tot,0);
     }
+    
+    @Test
+    public void TestPaniniDiscount() throws TakeAwayBillException{
+        items.add(new MenuItem(ItemType.Panini,"Panino Vegetariano",5.0));
+        items.add(new MenuItem(ItemType.Panini,"Panino Vegetariano",5.0));
+        items.add(new MenuItem(ItemType.Panini,"Panino Vegetariano",5.0));
+        items.add(new MenuItem(ItemType.Panini,"Panino Vegetariano",3.0));
+        items.add(new MenuItem(ItemType.Panini,"Panino Vegetariano",5.0));
+        items.add(new MenuItem(ItemType.Panini,"Panino Vegetariano",5.0));
+
+        tot=ordine.getOrderPrice(items);
+        assertEquals(26.5, tot,0);
+    }
 
 }
