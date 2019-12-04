@@ -68,5 +68,12 @@ public class TakeAwayBillImplTest {
         tot=ordine.getOrderPrice(items);
         assertEquals(72, tot,0);
     }
+    
+    @Test(expected = TakeAwayBillException.class)
+    public void TestIfMoreThan30Items() throws TakeAwayBillException{
+        for(int i=0; i<31; i++)items.add(new MenuItem(ItemType.Fritti, "Olive ascolane", 0));
+        
+            ordine.getOrderPrice(items);
+    }
 
 }

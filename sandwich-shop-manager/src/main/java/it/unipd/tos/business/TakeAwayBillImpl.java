@@ -16,6 +16,8 @@ public class TakeAwayBillImpl implements TakeAwayBill{
         int nPanini=0,totPaniniFritti=0;
         double minPanino=Integer.MAX_VALUE;
         
+        if(size>30)throw new TakeAwayBillException();
+        
         for(int i=0;i<size;i++) {     
             totale+=itemsOrdered.get(i).getPrice();
             switch(itemsOrdered.get(i).getType()) {
